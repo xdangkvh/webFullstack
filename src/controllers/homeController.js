@@ -16,7 +16,7 @@ let getAboutPage = (req, res) => {
     return res.render("./test/about.ejs")
 }
 let getCURD = (req, res) => {
-    return res.render("./test/crud.ejs")
+    return res.render("./test/createCRUD.ejs")
 }
 let postCURD = async (req, res) => {
     let message = await CRUDservice.createNewUser(req.body);
@@ -30,10 +30,26 @@ let displayGetCRUD = async (req, res) => {
         dataTable: data
     })
 }
+let getEditCRUD = async (req, res) => {
+    let userId = req.query.id;
+    console.log(userId)
+    if (userId) {
+        let userData = await CRUDservice.getUserInfoById(userId);
+        console.log(userData)
+        return res.send("found user")
+    }
+    else {
+        return res.send("user not found")
+    }
+
+
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
     getCURD: getCURD,
     postCURD: postCURD,
     displayGetCRUD: displayGetCRUD,
+    getEditCRUD: getEditCRUD,
 }
