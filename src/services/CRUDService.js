@@ -1,5 +1,7 @@
 import bcrypt from "bcryptjs";
 import db from "../models/index";
+import { resolve } from "path";
+import { resolveSoa } from "dns";
 // import { EagerLoadingError } from "sequelize";
 const salt = bcrypt.genSaltSync(10);
 
@@ -74,8 +76,34 @@ let getUserInfoById = (userId) => {
     })
 }
 
+let updateUserData = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: data.id }
+            })
+            if (user) {
+                user.firstname = data.firstname
+                user.lastname = data.lastname
+                user.address = data.address
+
+                await user.save()
+                let allUsers = await db.User.findAll();
+                resolve(allUsers)
+            }
+            else {
+                resolve()
+            }
+        }
+        catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     createNewUser: createNewUser,
     getAllUser: getAllUser,
     getUserInfoById: getUserInfoById,
+    updateUserData: updateUserData,
 }
