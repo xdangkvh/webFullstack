@@ -1,3 +1,4 @@
+import { resolveObjectURL } from "buffer";
 import db from "../models/index";
 import CRUDservice from "../services/CRUDservice";
 let getHomePage = async (req, res) => {
@@ -25,7 +26,6 @@ let postCURD = async (req, res) => {
 }
 let displayGetCRUD = async (req, res) => {
     let data = await CRUDservice.getAllUser();
-    console.log(data)
     return res.render("./test/displayCRUD.ejs", {
         dataTable: data
     })
@@ -53,6 +53,17 @@ let putCRUD = async (req, res) => {
     })
 }
 
+let deleteCRUD = async (req, res) => {
+    let id = req.query.id;
+    if (id) {
+        let allUsers = await CRUDservice.deleteUserById(id);
+        return res.send("Delete Sucess")
+    }
+    else {
+        return res.send("User not found");
+    }
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
@@ -61,4 +72,5 @@ module.exports = {
     displayGetCRUD: displayGetCRUD,
     getEditCRUD: getEditCRUD,
     putCRUD: putCRUD,
+    deleteCRUD: deleteCRUD,
 }
