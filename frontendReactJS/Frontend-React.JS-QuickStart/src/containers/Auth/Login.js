@@ -1,18 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from "connected-react-router";
-
 import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
-
+// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FaFacebook, FaGooglePlusG } from "react-icons/fa";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.btnLogin = React.createRef();
+        this.state = {
+            username: "hoi dan it",
+            password: "Password",
+            isShowPassword: false,
+        }
     }
 
+
+    handleOnChangeUsername = (event) => {
+        // console.log(event.target.value)
+        this.setState({
+            username: event.target.value
+        })
+    }
+
+    handleOnChangePassword = (event) => {
+        // console.log(event.target.value)
+        this.setState({
+            password: event.target.value
+        })
+    }
+
+    handleLogin = () => {
+        console.log(this.state)
+        console.log(this.state.password)
+    }
+
+    handleHiddenPassword = () => {
+        this.setState({
+            isShowPassword: !this.state.isShowPassword
+        })
+    }
 
     render() {
 
@@ -27,28 +57,35 @@ class Login extends Component {
                             <label>
                                 Username:
                             </label>
-                            <input type='text' className='form-control' placeholder='Enter yoir username'></input>
+                            <input type='text' className='form-control' placeholder='Enter your username'
+                                value={this.state.username} onChange={(event) => this.handleOnChangeUsername(event)}></input>
                         </div>
                         <div className='col-12 form-group login-input' >
                             <label>
                                 Password:
                             </label>
-                            <input type='password' className='form-control' placeholder='Enter your password'></input>
+                            <div className='custom-input-password'>
+                                <input type={this.state.isShowPassword ? 'text' : 'password'} className='form-control' placeholder='Enter your password'
+                                    value={this.state.password} onChange={(event) => this.handleOnChangePassword(event)}></input>
+                                <div className='hidden-passwd' onClick={() => this.handleHiddenPassword()}><AiFillEye /></div>
+
+                            </div>
                         </div>
                         <div className='col-12  '>
-                            <button className='btn-login'>
+                            <button className='btn-login'
+                                onClick={() => this.handleLogin()}>
                                 Login
                             </button>
                         </div>
                         <div className='col-12 '>
                             <span className='forgot-password'>Forgot your password?</span>
                         </div>
-                        <div className='col-12 text-center'>
-                            <span className='text-other-login'> Or login with: </span>
-                        </div>
-                        <div className='col-12 social-login'>
-                            <i className="fa-brands fa-google google"></i>
-                            <i className="fa-brands fa-facebook facebook"></i>
+                        <div className='col-12 custom-login'>
+                            <span className='text-other-login '> Or login with: </span>
+                        </div> 
+                        <div className='col-12 social-login' >
+                            <div className='facebook'><FaFacebook /></div>
+                            <div className='google'> <FaGooglePlusG /> </div>
                         </div>
                     </div>
                 </div>
