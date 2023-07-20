@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 // import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FaFacebook, FaGooglePlusG } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
+import { handleLoginApi } from '../../services/userService';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -33,9 +33,15 @@ class Login extends Component {
         })
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
         console.log(this.state)
         console.log(this.state.password)
+        try {
+            await handleLoginApi(this.state.username, this.state.password)
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 
     handleHiddenPassword = () => {
@@ -82,7 +88,7 @@ class Login extends Component {
                         </div>
                         <div className='col-12 custom-login'>
                             <span className='text-other-login '> Or login with: </span>
-                        </div> 
+                        </div>
                         <div className='col-12 social-login' >
                             <div className='facebook'><FaFacebook /></div>
                             <div className='google'> <FaGooglePlusG /> </div>
