@@ -12,9 +12,10 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "hoi dan it",
-            password: "Password",
+            username: "",
+            password: "",
             isShowPassword: false,
+            errMessage: ''
         }
     }
 
@@ -34,13 +35,32 @@ class Login extends Component {
     }
 
     handleLogin = async () => {
-        console.log(this.state)
-        console.log(this.state.password)
+        // console.log(this.state)
+        // console.log(this.state.password)
+        this.setState({
+            errMessage: ''
+        })
         try {
-            await handleLoginApi(this.state.username, this.state.password)
+            let data = await handleLoginApi(this.state.username, this.state.password)
+            if (data && data.errCode !== 0) {
+                this.setState({
+                    errMessage: data.message
+                })
+            }
+            if (data && data.errCode == 0) {
+                console.log("Login sucess")
+            }
         }
         catch (e) {
-            console.log(e)
+            if (e.response) {
+                if (e.response.data) {
+                    this.setState({
+                        errMessage: e.response.data.message
+                    })
+                }
+            }
+            console.log("dangkvh:", e.response)
+            // this.setState({ errMessage: e.message })
         }
     }
 
@@ -76,6 +96,11 @@ class Login extends Component {
                                 <div className='hidden-passwd' onClick={() => this.handleHiddenPassword()}><AiFillEye /></div>
 
                             </div>
+                        </div>
+                        <div className='col-12' style={{ color: 'red' }}>
+                            {
+                                this.state.errMessage
+                            }
                         </div>
                         <div className='col-12  '>
                             <button className='btn-login'
