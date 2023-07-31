@@ -6,7 +6,7 @@ import './Login.scss';
 import { FormattedMessage } from 'react-intl';
 // import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { FaFacebook, FaGooglePlusG } from "react-icons/fa";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { AiFillCreditCard, AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { handleLoginApi } from '../../services/userService';
 class Login extends Component {
     constructor(props) {
@@ -47,7 +47,8 @@ class Login extends Component {
                     errMessage: data.message
                 })
             }
-            if (data && data.errCode == 0) {
+            if (data && data.errCode === 0) {
+                this.props.userLoginSucess(data.user)
                 console.log("Login sucess")
             }
         }
@@ -134,8 +135,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        // userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSucess: (userInfor) => dispatch(actions.userLoginSucess(userInfor))
     };
 };
 
