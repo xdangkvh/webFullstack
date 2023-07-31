@@ -76,7 +76,7 @@ let checkUserEmail = (userEmail) => {
         }
     })
 }
-
+//get All users
 let getAllUsers = (userId) => {
     return new Promise(async (resolve, reject) => {
         try {
