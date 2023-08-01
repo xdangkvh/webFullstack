@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import { getAllUsers } from '../../services/userService';
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiFillEdit, AiFillDelete, AiFillPlusCircle } from "react-icons/ai";
 class UserManage extends Component {
 
     constructor(props) {
@@ -32,6 +32,9 @@ class UserManage extends Component {
             <div className="users-container">
                 <div className='title text-center'>
                     manage user
+                </div>
+                <div className='mx-1'>
+                    <button className='btn btn-primary px-3'><AiFillPlusCircle />Add new user</button>
                 </div>
                 <div className='users-table mt-3 mx-2'>
                     <table>
