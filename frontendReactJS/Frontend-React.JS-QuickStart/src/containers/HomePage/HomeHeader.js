@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
-import { FaBars } from "react-icons/fa";
-import { BsFillQuestionCircleFill } from "react-icons/bs";
-import { AiOutlineSearch } from "react-icons/ai";
+import { FaBars, FaRegHospital, FaTooth, FaBrain } from "react-icons/fa";
+import { BsFillQuestionCircleFill, BsHospital } from "react-icons/bs";
+import { AiOutlineSearch, AiFillMobile } from "react-icons/ai";
+import { BiTestTube } from "react-icons/bi";
 class HomeHeader extends Component {
 
     render() {
@@ -49,16 +50,48 @@ class HomeHeader extends Component {
                     </div>
                 </div>
                 <div className='home-header-banner'>
-                    <div className='title1'>Nền tảng y tế</div>
-                    <div className='title2'>Chăm sóc sức khỏe toàn diện</div>
-                    <div className='search'>
-                        <div className='ai'>
-                            <AiOutlineSearch />
-                        </div>
+                    <div className='content-up'>
+                        <div className='title1'>Nền tảng y tế</div>
+                        <div className='title2'>Chăm sóc sức khỏe toàn diện</div>
+                        <div className='search'>
+                            <div className='ai'>
+                                <AiOutlineSearch />
+                            </div>
 
-                        <input type='text' placeholder='Tim chuyen khoa kham benh'></input>
+                            <input type='text' placeholder='Tim chuyen khoa kham benh'></input>
+                        </div>
                     </div>
-                    <div className='options'></div>
+
+                    <div className='content-down'>
+                        <div className='options'>
+                            <div className='option-child'>
+                                <div className='icon-child'> <div className='icon'><FaRegHospital /></div></div>
+                                <div className='text-child'>Khám chuyên khoa </div>
+                            </div>
+                            <div className='option-child'>
+                                <div className='icon-child'> <div className='icon'><AiFillMobile /></div></div>
+                                <div className='text-child'>Khám từ xa </div>
+                            </div>
+                            <div className='option-child'>
+                                <div className='icon-child'> <div className='icon'><BsHospital /></div></div>
+                                <div className='text-child'>Khám tổng quát </div>
+                            </div>
+                            <div className='option-child'>
+                                <div className='icon-child'> <div className='icon'><FaBrain /></div></div>
+                                <div className='text-child'>Khám tinh thần </div>
+                            </div>
+                            <div className='option-child'>
+                                <div className='icon-child'> <div className='icon'><FaTooth /></div></div>
+                                <div className='text-child'>Khám nha khoa </div>
+                            </div>
+                            <div className='option-child'>
+                                <div className='icon-child'> <div className='icon'><BiTestTube /></div></div>
+                                <div className='text-child'>Xét nghiệm y học  </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </React.Fragment>
         );

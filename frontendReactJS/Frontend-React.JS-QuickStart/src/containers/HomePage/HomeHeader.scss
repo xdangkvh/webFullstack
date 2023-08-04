@@ -58,44 +58,90 @@
     background-repeat: no-repeat;
     background-zize: cover ;
     background-position: center;
-    padding: 15px 0;
-    .title1{
-        text-align: center;
-        font-size: 30px;
-        text-shadow: 1px 1px 1px #333;
-        margin-bottom: 15px;
-        color: white;
-    }
-    .title2{
-        text-align: center;
-        font-size: 30px;
-        text-shadow: 1px 1px 1px #333;
-        color: white;
-        margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 
-    }
-    .search{
-        width: fit-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-        padding: 10px;
-        border-radius: 25px;
-        background:#f7d800 ;
-        .ai{
-            margin: 0 5px;
+    .content-up{
+        border: 1px solid yellow;
+        padding-top: 15px;
+        height: 50%;
+        .title1{
+            text-align: center;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            margin-bottom: 15px;
+            color: white;
         }
-
-        input{
-            height: 30px;
-            width: 360px;
-            background: transparent;
-            border: none;
-            outline: none;
+        .title2{
+            text-align: center;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            color: white;
+            margin-bottom: 15px;
+    
+        }
+        .search{
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 25px;
+            background:#f7d800 ;
+            .ai{
+                margin: 0 5px;
+            }
+    
+            input{
+                height: 30px;
+                width: 360px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
         }
     }
-    .options{
+    
+    .content-down{
+        border: 1px solid blue;
+        height: 50%;
+        padding: 0 100px;
+        .options{
+            text-align: center;
+            display: flex;
+            gap: 30px;
+            justify-content: space-around ;
+            .option-child{
+                width: 100px;
+                border: 1px solid red;
+                .icon-child{
+                    background: white;
+                    width: 40px;
+                    height: 40px;
+                    padding: 10px;
+                    border-radius: 50%;
+                    text-align: center;
+                    margin: 0 auto;
+                    .icon{
+                        color:  green($color: #000000);
+                        font-size: 20px;
+                    }
+                    
+                }
 
+                .text-child{
+                    font-size: 17px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    &:hover{
+                        color: green($color: #000000);
+                    }
+                }
+            }
+
+        }
     }
+  
+   
 }
