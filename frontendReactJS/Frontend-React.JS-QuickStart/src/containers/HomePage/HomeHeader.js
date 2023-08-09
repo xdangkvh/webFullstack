@@ -6,9 +6,15 @@ import { BsFillQuestionCircleFill, BsHospital } from "react-icons/bs";
 import { AiOutlineSearch, AiFillMobile } from "react-icons/ai";
 import { BiTestTube } from "react-icons/bi";
 import { FormattedMessage } from 'react-intl';
-class HomeHeader extends Component {
+import { LANGUAGES } from '../../utils/constant';
+import { changeLanguageApp } from '../../store/actions/appActions';
 
+class HomeHeader extends Component {
+    changeLanguage = (language) => {
+        this.props.changeLanguageAppRedux(language)
+    }
     render() {
+        let language = this.props.language;
         console.log(this.props)
 
         return (
@@ -46,10 +52,10 @@ class HomeHeader extends Component {
                                 <FormattedMessage id="homeheader.support" />
                             </div>
                             <div className='language-vi'>
-                                VN
+                                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
                             </div>
                             <div className='language-en'>
-                                EN
+                                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
                             </div>
                         </div>
                     </div>
@@ -113,6 +119,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 
